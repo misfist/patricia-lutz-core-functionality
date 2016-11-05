@@ -25,25 +25,3 @@
  }
  add_filter( 'script_loader_src', 'patricia_lutz_core_remove_script_version', 15, 1 );
  add_filter( 'style_loader_src', 'patricia_lutz_core_remove_script_version', 15, 1 );
-
-/**
- * Defer Parsing of JavaScript Files
- *
- * @since   0.1.0
- *
- * @uses    clean_url filter
- * @uses    style_loader_src filter
- *
- * @param   {string} $url
- * @return  {string} $parts[0]
- */
-function patricia_lutz_core_defer_parsing_js( $url ) {
-    if ( FALSE === strpos( $url, '.js' ) ) {
-        return $url;
-    }
-    if ( strpos( $url, 'jquery.js' ) ) {
-        return $url;
-    }
-    return "$url' defer ";
-}
-add_filter( 'clean_url', 'patricia_lutz_core_defer_parsing_js', 11, 1 );
